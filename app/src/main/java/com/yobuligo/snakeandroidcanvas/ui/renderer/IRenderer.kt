@@ -1,8 +1,7 @@
-package com.yobuligo.snakeandroidcanvas.core
+package com.yobuligo.snakeandroidcanvas.ui.renderer
 
 import android.graphics.Canvas
 
 interface IRenderer {
-    var elements: MutableList<IElement>
     fun render(canvas: Canvas?)
 }

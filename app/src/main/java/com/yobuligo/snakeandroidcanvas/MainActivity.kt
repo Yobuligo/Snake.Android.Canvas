@@ -1,38 +1,28 @@
 package com.yobuligo.snakeandroidcanvas
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.yobuligo.snakeandroidcanvas.core.IMovableElement
-import com.yobuligo.snakeandroidcanvas.core.Snake
-import com.yobuligo.snakeandroidcanvas.core.SnakeElement
-import com.yobuligo.snakeandroidcanvas.renderer.Renderer
-import com.yobuligo.snakeandroidcanvas.snake.model.ISnake
+import androidx.appcompat.app.AppCompatActivity
+import com.yobuligo.snakeandroidcanvas.core.Direction
+import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
+import com.yobuligo.snakeandroidcanvas.ui.renderer.Renderer
+import com.yobuligo.snakeandroidcanvas.core.SnakeBuilder
+import com.yobuligo.snakeandroidcanvas.ui.view.CanvasView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val canvasView = CanvasView(this)
-
-        val posY: Int = -2000
-
-        //initialize Snake
-        val snake: ISnake = Snake()
-        canvasView.renderer = Renderer()
-        canvasView.snake = snake
-        snake.posX = 700
-        snake.posY = posY
-        var predecessor = snake as IMovableElement
-        canvasView.renderer.elements.add(snake)
-        for (count in 5 downTo 0) {
-            val movableElement: IMovableElement = SnakeElement(predecessor)
-            movableElement.posX = 100 + (count * 100)
-            movableElement.posY = posY
-            canvasView.renderer.elements.add(movableElement)
-            predecessor = movableElement
-        }
-
+        canvasView.addRenderer(Renderer(buildSnake()))
         setContentView(canvasView)
     }
 
+    private fun buildSnake(): ISnake {
+        val snakeBuilder = SnakeBuilder()
+        snakeBuilder.setStartDirection(Direction.LEFT)
+        snakeBuilder.setStartPosX(500)
+        snakeBuilder.setStartPosY(500)
+        snakeBuilder.setStartNumberElements(6)
+        return snakeBuilder.build()
+    }
 }

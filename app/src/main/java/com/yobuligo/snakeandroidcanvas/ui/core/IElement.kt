@@ -1,4 +1,4 @@
-package com.yobuligo.snakeandroidcanvas.core
+package com.yobuligo.snakeandroidcanvas.ui.core
 
 interface IElement {
     var posX: Int
