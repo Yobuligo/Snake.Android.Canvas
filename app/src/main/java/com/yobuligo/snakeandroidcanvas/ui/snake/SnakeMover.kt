@@ -8,8 +8,8 @@ class SnakeMover() : ISnakeMover {
         var element = snake.getLastElement()
         while (true) {
             if ((element != null) && (element.predecessor != null)) {
-                element.posX = element.predecessor!!.posX
-                element.posY = element.predecessor!!.posY
+                element.pos.x = element.predecessor!!.pos.x
+                element.pos.y = element.predecessor!!.pos.y
                 element.direction = element.predecessor!!.direction
                 element = element.predecessor
             } else {
@@ -21,10 +21,10 @@ class SnakeMover() : ISnakeMover {
 
     private fun moveSnake(snake: ISnake) {
         when (snake.direction) {
-            Direction.RIGHT -> snake.posX = snake.posX + Config.ELEMENT_SIZE
-            Direction.LEFT -> snake.posX = snake.posX - Config.ELEMENT_SIZE
-            Direction.UP -> snake.posY = snake.posY - Config.ELEMENT_SIZE
-            Direction.DOWN -> snake.posY = snake.posY + Config.ELEMENT_SIZE
+            Direction.RIGHT -> snake.pos.x = snake.pos.x + Config.ELEMENT_SIZE
+            Direction.LEFT -> snake.pos.x = snake.pos.x - Config.ELEMENT_SIZE
+            Direction.UP -> snake.pos.y = snake.pos.y - Config.ELEMENT_SIZE
+            Direction.DOWN -> snake.pos.y = snake.pos.y + Config.ELEMENT_SIZE
         }
     }
 }

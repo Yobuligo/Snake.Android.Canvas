@@ -1,8 +1,9 @@
 package com.yobuligo.snakeandroidcanvas.ui.element
 
+import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
+
 interface IElement {
-    var posX: Int
-    var posY: Int
+    var pos: ICoordinate
     var width: Int
     var height: Int
     val color: Int

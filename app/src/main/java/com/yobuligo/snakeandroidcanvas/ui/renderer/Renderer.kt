@@ -20,8 +20,8 @@ class Renderer(val snake: ISnake) : IRenderer, IUpdater {
         for (element in elementRepository.getElements()) {
             paint.color = element.color
             val rect: Rect = Rect()
-            rect.left = element.posX
-            rect.top = element.posY
+            rect.left = element.pos.x
+            rect.top = element.pos.y
             rect.right = element.width
             rect.bottom = element.height
             canvas?.drawRect(rect, paint)

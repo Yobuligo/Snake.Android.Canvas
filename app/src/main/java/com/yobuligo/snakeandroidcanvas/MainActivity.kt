@@ -2,6 +2,7 @@ package com.yobuligo.snakeandroidcanvas
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.yobuligo.snakeandroidcanvas.builder.Coordinate
 import com.yobuligo.snakeandroidcanvas.options.Direction
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.renderer.Renderer
@@ -20,10 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun buildSnake(): ISnake {
         val snakeBuilder = SnakeBuilder()
-        snakeBuilder.setStartDirection(Direction.LEFT)
-        snakeBuilder.setStartPosX(500)
-        snakeBuilder.setStartPosY(500)
-        snakeBuilder.setStartNumberElements(6)
+        snakeBuilder.startDirection = Direction.LEFT
+        snakeBuilder.startPos = Coordinate(500, 500)
+        snakeBuilder.startNumberElements = 6
         return snakeBuilder.build()
     }
 }

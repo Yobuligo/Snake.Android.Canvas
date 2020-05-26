@@ -22,4 +22,8 @@ class FrameBuilder : IFrameBuilder {
         this.posRightBottom = posRightBottom
     }
 
+    override fun build() {
+        TODO("Not yet implemented")
+    }
+
 }
