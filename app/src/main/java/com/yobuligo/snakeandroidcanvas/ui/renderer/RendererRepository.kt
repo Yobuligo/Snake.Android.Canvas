@@ -1,7 +1,6 @@
 package com.yobuligo.snakeandroidcanvas.ui.renderer
 
-class RendererRepository :
-    IRendererRepository {
+class RendererRepository : IRendererRepository {
     private val rendererList: MutableList<IRenderer> = mutableListOf<IRenderer>()
 
     override fun addRenderer(renderer: IRenderer) {

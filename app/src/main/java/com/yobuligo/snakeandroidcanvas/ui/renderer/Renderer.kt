@@ -10,8 +10,7 @@ import com.yobuligo.snakeandroidcanvas.ui.core.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeMover
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeMover
 
-class Renderer(val snake: ISnake) : IRenderer,
-    IUpdater {
+class Renderer(val snake: ISnake) : IRenderer, IUpdater {
     override fun render(canvas: Canvas?) {
         val paint = Paint()
         paint.color = Color.WHITE
@@ -30,7 +29,7 @@ class Renderer(val snake: ISnake) : IRenderer,
                 rect.left = movableElement.posX
                 rect.top = movableElement.posY
                 rect.right = movableElement.width
-                rect.bottom = movableElement.heigth
+                rect.bottom = movableElement.height
                 canvas?.drawRect(rect, paint)
                 movableElement = movableElement.follower
             } else {

@@ -1,4 +1,4 @@
-package com.yobuligo.snakeandroidcanvas.core
+package com.yobuligo.snakeandroidcanvas.options
 
 class Config {
     companion object {

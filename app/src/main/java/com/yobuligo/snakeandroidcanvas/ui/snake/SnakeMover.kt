@@ -1,7 +1,7 @@
 package com.yobuligo.snakeandroidcanvas.ui.snake
 
-import com.yobuligo.snakeandroidcanvas.core.Config
-import com.yobuligo.snakeandroidcanvas.core.Direction
+import com.yobuligo.snakeandroidcanvas.options.Config
+import com.yobuligo.snakeandroidcanvas.options.Direction
 
 class SnakeMover() : ISnakeMover {
     override fun move(snake: ISnake) {

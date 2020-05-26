@@ -1,15 +1,16 @@
-package com.yobuligo.snakeandroidcanvas.core
+package com.yobuligo.snakeandroidcanvas.builder
 
+import com.yobuligo.snakeandroidcanvas.options.Config
+import com.yobuligo.snakeandroidcanvas.options.Direction
 import com.yobuligo.snakeandroidcanvas.ui.core.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.Snake
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeElement
 
-class SnakeBuilder : ISnakeBuilder {
+internal class SnakeBuilder : ISnakeBuilder {
     private var startNumberElements: Int = 3
-    private var startDirection: Direction =
-        Direction.RIGHT
+    private var startDirection: Direction = Direction.RIGHT
     private var startPosX: Int = 600
     private var startPosY: Int = 100
 

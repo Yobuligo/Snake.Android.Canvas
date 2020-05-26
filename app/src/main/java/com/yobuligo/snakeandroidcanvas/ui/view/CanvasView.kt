@@ -5,7 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
-import com.yobuligo.snakeandroidcanvas.core.*
+import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.ui.renderer.RendererRepository
 import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 import com.yobuligo.snakeandroidcanvas.ui.renderer.IRendererRepository
@@ -18,7 +18,7 @@ class CanvasView(context: Context) : View(context),
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        rendererCanvas(canvas)
+        renderCanvas(canvas)
         renderElements(canvas)
         Thread.sleep(Config.SPEED.value)
         invalidate()
@@ -32,7 +32,7 @@ class CanvasView(context: Context) : View(context),
         return rendererRepository.getRenderer()
     }
 
-    private fun rendererCanvas(canvas: Canvas?) {
+    private fun renderCanvas(canvas: Canvas?) {
         val paint = Paint()
         paint.color = Color.WHITE
         paint.style = Paint.Style.FILL

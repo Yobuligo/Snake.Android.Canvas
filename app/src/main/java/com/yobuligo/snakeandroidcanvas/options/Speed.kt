@@ -1,4 +1,4 @@
-package com.yobuligo.snakeandroidcanvas.core
+package com.yobuligo.snakeandroidcanvas.options
 
 enum class Speed(val value: Long) {
     SLOW(1000),

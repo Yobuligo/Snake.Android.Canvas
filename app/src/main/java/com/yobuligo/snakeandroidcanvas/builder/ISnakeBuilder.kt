@@ -1,5 +1,6 @@
-package com.yobuligo.snakeandroidcanvas.core
+package com.yobuligo.snakeandroidcanvas.builder
 
+import com.yobuligo.snakeandroidcanvas.options.Direction
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 
 interface ISnakeBuilder {
