@@ -3,6 +3,8 @@ package com.yobuligo.snakeandroidcanvas
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.yobuligo.snakeandroidcanvas.builder.Coordinate
+import com.yobuligo.snakeandroidcanvas.builder.FrameBuilder
+import com.yobuligo.snakeandroidcanvas.builder.IFrameBuilder
 import com.yobuligo.snakeandroidcanvas.options.Direction
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.renderer.Renderer
@@ -15,6 +17,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val canvasView = CanvasView(this)
+
+        val frameBuilder = FrameBuilder()
+        frameBuilder.build()
+
         canvasView.addRenderer(Renderer(buildSnake()))
         setContentView(canvasView)
     }

@@ -7,5 +7,6 @@ interface ISnakeBuilder {
     var startNumberElements: Int
     var startDirection: Direction
     var startPos: ICoordinate
+    var movable: Boolean
     fun build(): ISnake
 }

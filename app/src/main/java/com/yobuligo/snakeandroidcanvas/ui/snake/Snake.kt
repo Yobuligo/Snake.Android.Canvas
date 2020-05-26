@@ -10,6 +10,7 @@ class Snake : Element(), ISnake {
     override var follower: IMovableElement? = null
     override var predecessor: IMovableElement? = null
     override val color: Int = Color.BLUE
+    override var movable: Boolean = true
 
     override fun hasLastElement(): Boolean {
         return follower != null

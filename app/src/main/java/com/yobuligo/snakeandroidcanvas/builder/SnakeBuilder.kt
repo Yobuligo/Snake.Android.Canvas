@@ -12,6 +12,7 @@ internal class SnakeBuilder : ISnakeBuilder {
     override var startNumberElements: Int = 3
     override var startDirection: Direction = Direction.RIGHT
     override var startPos: ICoordinate = Coordinate(600, 100)
+    override var movable: Boolean = true
 
     override fun build(): ISnake {
         val snake = Snake()

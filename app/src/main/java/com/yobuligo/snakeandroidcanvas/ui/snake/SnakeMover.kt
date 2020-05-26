@@ -5,6 +5,10 @@ import com.yobuligo.snakeandroidcanvas.options.Direction
 
 class SnakeMover() : ISnakeMover {
     override fun move(snake: ISnake) {
+        if (!snake.movable) {
+            return
+        }
+
         var element = snake.getLastElement()
         while (true) {
             if ((element != null) && (element.predecessor != null)) {
