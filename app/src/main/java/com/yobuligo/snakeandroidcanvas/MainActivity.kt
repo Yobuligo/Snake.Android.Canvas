@@ -6,6 +6,7 @@ import com.yobuligo.snakeandroidcanvas.options.Direction
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.renderer.Renderer
 import com.yobuligo.snakeandroidcanvas.builder.SnakeBuilder
+import com.yobuligo.snakeandroidcanvas.ui.border.Border
 import com.yobuligo.snakeandroidcanvas.ui.view.CanvasView
 
 class MainActivity : AppCompatActivity() {
