@@ -1,9 +1,8 @@
 package com.yobuligo.snakeandroidcanvas.ui.border
 
-class Border(
-    override var posX: Int,
-    override var posY: Int,
-    override var width: Int,
-    override var height: Int
-) :IBorder {
+import android.graphics.Color
+import com.yobuligo.snakeandroidcanvas.ui.element.Element
+
+class Border() : Element(), IBorder {
+    override val color: Int = Color.GRAY
 }

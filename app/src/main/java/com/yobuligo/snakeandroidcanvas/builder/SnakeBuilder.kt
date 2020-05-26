@@ -2,7 +2,7 @@ package com.yobuligo.snakeandroidcanvas.builder
 
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.Direction
-import com.yobuligo.snakeandroidcanvas.ui.core.IMovableElement
+import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.Snake

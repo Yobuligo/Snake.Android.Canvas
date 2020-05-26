@@ -1,4 +1,4 @@
-package com.yobuligo.snakeandroidcanvas.ui.core
+package com.yobuligo.snakeandroidcanvas.ui.element
 
 import com.yobuligo.snakeandroidcanvas.options.Direction
 

@@ -5,8 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
-import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeElement
-import com.yobuligo.snakeandroidcanvas.ui.core.IMovableElement
+import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeMover
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeMover
 
@@ -19,12 +18,7 @@ class Renderer(val snake: ISnake) : IRenderer, IUpdater {
         var movableElement: IMovableElement? = snake
         while (true) {
             if (movableElement != null) {
-                if (movableElement is ISnakeElement) {
-                    paint.color = Color.RED
-                } else {
-                    paint.color = Color.BLUE
-                }
-
+                paint.color = movableElement.color
                 val rect: Rect = Rect()
                 rect.left = movableElement.posX
                 rect.top = movableElement.posY

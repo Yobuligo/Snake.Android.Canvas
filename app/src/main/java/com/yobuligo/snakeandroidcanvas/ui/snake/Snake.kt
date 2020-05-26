@@ -1,14 +1,15 @@
 package com.yobuligo.snakeandroidcanvas.ui.snake
 
-import com.yobuligo.snakeandroidcanvas.options.Config
+import android.graphics.Color
 import com.yobuligo.snakeandroidcanvas.options.Direction
-import com.yobuligo.snakeandroidcanvas.ui.core.Element
-import com.yobuligo.snakeandroidcanvas.ui.core.IMovableElement
+import com.yobuligo.snakeandroidcanvas.ui.element.Element
+import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 
 class Snake : Element(), ISnake {
     override var direction: Direction = Direction.RIGHT
     override var follower: IMovableElement? = null
     override var predecessor: IMovableElement? = null
+    override val color: Int = Color.BLUE
 
     override fun hasLastElement(): Boolean {
         return follower != null
