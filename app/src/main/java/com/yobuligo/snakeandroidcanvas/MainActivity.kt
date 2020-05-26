@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val canvasView = CanvasView(this)
         canvasView.addRenderer(Renderer(buildSnake()))
-        canvasView.addRenderer(Renderer(buildSnake2()))
         setContentView(canvasView)
     }
 
@@ -23,15 +22,6 @@ class MainActivity : AppCompatActivity() {
         snakeBuilder.setStartDirection(Direction.LEFT)
         snakeBuilder.setStartPosX(500)
         snakeBuilder.setStartPosY(500)
-        snakeBuilder.setStartNumberElements(6)
-        return snakeBuilder.build()
-    }
-
-    private fun buildSnake2(): ISnake {
-        val snakeBuilder = SnakeBuilder()
-        snakeBuilder.setStartDirection(Direction.RIGHT)
-        snakeBuilder.setStartPosX(500)
-        snakeBuilder.setStartPosY(300)
         snakeBuilder.setStartNumberElements(6)
         return snakeBuilder.build()
     }
