@@ -18,6 +18,7 @@ internal class SnakeBuilder : ISnakeBuilder {
         val snake = Snake()
         snake.direction = startDirection
         snake.pos = startPos
+        snake.movable = movable
         var predecessor: IMovableElement = snake
         for (number in 1..startNumberElements) {
             val snakeElement =

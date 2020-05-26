@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         val canvasView = CanvasView(this)
 
         val frameBuilder = FrameBuilder()
+        frameBuilder.posLeftTop = Coordinate(50, 50)
+        frameBuilder.posRightBottom = Coordinate(950, 950)
         frameBuilder.build()
 
         canvasView.addRenderer(Renderer(buildSnake()))
@@ -29,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         val snakeBuilder = SnakeBuilder()
         snakeBuilder.startDirection = Direction.LEFT
         snakeBuilder.startPos = Coordinate(500, 500)
-        snakeBuilder.startNumberElements = 6
+        snakeBuilder.startNumberElements = 0
+        snakeBuilder.movable = true
         return snakeBuilder.build()
     }
 }

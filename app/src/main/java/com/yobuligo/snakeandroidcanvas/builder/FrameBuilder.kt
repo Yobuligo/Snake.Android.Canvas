@@ -15,16 +15,20 @@ class FrameBuilder : IFrameBuilder {
 
         for (number in 0..numberElementsHorizontal) {
             var border = Border()
-            border.pos = Coordinate(number.times(Config.ELEMENT_SIZE), posLeftTop.y)
+            border.pos =
+                Coordinate(number.times(Config.ELEMENT_SIZE) + posLeftTop.x, posLeftTop.y)
             border = Border()
-            border.pos = Coordinate(number.times(Config.ELEMENT_SIZE), posRightBottom.y)
+            border.pos =
+                Coordinate(number.times(Config.ELEMENT_SIZE) + posLeftTop.x, posRightBottom.y)
         }
 
         for (number in 0..numberElementsVertical) {
             var border = Border()
-            border.pos = Coordinate(posLeftTop.x, number.times(Config.ELEMENT_SIZE))
+            border.pos =
+                Coordinate(posLeftTop.x, number.times(Config.ELEMENT_SIZE) + posLeftTop.y)
             border = Border()
-            border.pos = Coordinate(posRightBottom.x, number.times(Config.ELEMENT_SIZE))
+            border.pos =
+                Coordinate(posRightBottom.x, number.times(Config.ELEMENT_SIZE) + posLeftTop.y)
         }
     }
 }
