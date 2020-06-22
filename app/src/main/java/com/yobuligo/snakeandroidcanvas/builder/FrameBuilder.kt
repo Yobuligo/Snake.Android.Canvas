@@ -4,10 +4,27 @@ import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.ui.border.Border
 
 class FrameBuilder : IFrameBuilder {
-    override var posLeftTop: ICoordinate = Coordinate(0, 0)
-    override var posRightBottom: ICoordinate = Coordinate(800, 800)
+    private var posLeftTop: ICoordinate = Coordinate(0, 0)
+    private var posRightBottom: ICoordinate = Coordinate(800, 800)
+    private var noBorders: Boolean = false
+
+    override fun setPosLeftTop(coordinate: ICoordinate) {
+        posLeftTop = coordinate
+    }
+
+    override fun setPosRightBottom(coordinate: ICoordinate) {
+        posRightBottom = coordinate
+    }
+
+    override fun setNoBorders() {
+        noBorders = true
+    }
 
     override fun build() {
+        if (noBorders) {
+            return
+        }
+
         val numberElementsHorizontal: Int =
             posRightBottom.x.minus(posLeftTop.x).div(Config.ELEMENT_SIZE)
         val numberElementsVertical: Int =

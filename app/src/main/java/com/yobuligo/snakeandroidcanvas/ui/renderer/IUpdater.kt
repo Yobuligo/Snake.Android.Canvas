@@ -1,5 +1,5 @@
 package com.yobuligo.snakeandroidcanvas.ui.renderer
 
 interface IUpdater {
-    fun update()
+    fun update(cycleAttributes: ICycleAttributes)
 }

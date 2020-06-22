@@ -6,12 +6,13 @@ import android.graphics.Paint
 import android.graphics.Rect
 import com.yobuligo.snakeandroidcanvas.ui.element.ElementRepository
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
-import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeMover
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeMover
 
-class Renderer(val snake: ISnake) : IRenderer, IUpdater {
-    override fun render(canvas: Canvas?) {
+class ElementRenderer(val snake: ISnake) : IRenderer, IUpdater {
+    val snakeMover: ISnakeMover = SnakeMover()
+
+    override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
         val paint = Paint()
         paint.color = Color.WHITE
         paint.style = Paint.Style.FILL
@@ -28,8 +29,7 @@ class Renderer(val snake: ISnake) : IRenderer, IUpdater {
         }
     }
 
-    override fun update() {
-        val snakeMover: ISnakeMover = SnakeMover()
-        snakeMover.move(snake)
+    override fun update(cycleAttributes: ICycleAttributes) {
+        snakeMover.move(snake, cycleAttributes)
     }
 }
