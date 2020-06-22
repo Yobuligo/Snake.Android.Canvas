@@ -1,33 +1,15 @@
 package com.yobuligo.snakeandroidcanvas.ui.snake
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
-import com.yobuligo.snakeandroidcanvas.builder.Coordinate
-import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import kotlin.random.Random
 
-class SnakeElementSpawner : ISnakeElementSpawner {
+class SnakeElementSpawner(val autoSpawnCycleInMilli: Long) : ISnakeElementSpawner {
     private lateinit var snakeElement: ISnakeElement
     private var lastSpawnInMilli: Long = 0.toLong()
 
-    override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
+    override fun update(cycleAttributes: ICycleAttributes) {
         spawnElement(cycleAttributes)
-
-        val paint = Paint()
-        paint.color = Color.WHITE
-        paint.style = Paint.Style.FILL
-
-        paint.color = Color.GREEN
-        val rect: Rect = Rect()
-        rect.left = snakeElement.pos.x
-        rect.top = snakeElement.pos.y
-        rect.right = snakeElement.width
-        rect.bottom = snakeElement.height
-        canvas?.drawRect(rect, paint)
     }
 
     private fun spawnElement(cycleAttributes: ICycleAttributes) {
@@ -53,10 +35,12 @@ class SnakeElementSpawner : ISnakeElementSpawner {
             return true
         }
 
-        //Spawn each time a Snake Element
-        val timeSpan: Long = cycleAttributes.currentTimeinMilli - lastSpawnInMilli
-        if (timeSpan > 2000) {
-            return true
+        //Needs a snake element to be spawned each cycle?
+        if (autoSpawnCycleInMilli.compareTo(0) == 1) {
+            val timeSpan: Long = cycleAttributes.currentTimeinMilli - lastSpawnInMilli
+            if (timeSpan > autoSpawnCycleInMilli) {
+                return true
+            }
         }
 
         return false

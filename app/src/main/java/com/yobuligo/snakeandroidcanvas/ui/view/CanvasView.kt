@@ -9,24 +9,26 @@ import android.view.View
 import com.yobuligo.snakeandroidcanvas.ui.clickable.ClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.renderer.*
+import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdater
+import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdaterRepository
+import com.yobuligo.snakeandroidcanvas.ui.updater.UpdaterRepository
 import java.util.*
 
 class CanvasView(context: Context) : View(context),
-    IRendererRepository {
+    IRendererRepository, IUpdaterRepository {
     private val clickableRepository: IClickableRepository = ClickableRepository.getInstance()
     private val rendererRepository: IRendererRepository = RendererRepository()
+    private val updaterRepository: IUpdaterRepository = UpdaterRepository()
     private var lastTimeInMilli: Long = 0.toLong()
     private var currentTimeInMilli: Long = 0.toLong()
     private var elapsedTimeInMilli: Long = 0.toLong()
 
-    init {
-
-    }
-
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        val cycleAttributes = createCycleAttributes()
+        updateElements(cycleAttributes)
         renderCanvas(canvas)
-        renderElements(canvas, createCycleAttributes())
+        renderElements(canvas, cycleAttributes)
         lastTimeInMilli = currentTimeInMilli
         invalidate()
 
@@ -53,10 +55,21 @@ class CanvasView(context: Context) : View(context),
 
     override fun addRenderer(renderer: IRenderer) {
         rendererRepository.addRenderer(renderer)
+
+        if (renderer is IUpdater) {
+            val updater: IUpdater = renderer
+            addUpdater(updater)
+        }
     }
 
     override fun getRenderer(): List<IRenderer> {
         return rendererRepository.getRenderer()
+    }
+
+    fun updateElements(cycleAttributes: ICycleAttributes) {
+        for (updater in getUpdater()) {
+            updater.update(cycleAttributes)
+        }
     }
 
     private fun renderCanvas(canvas: Canvas?) {
@@ -76,11 +89,15 @@ class CanvasView(context: Context) : View(context),
 
     private fun renderElements(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
         for (renderer in rendererRepository.getRenderer()) {
-            if (renderer is IUpdater) {
-                val updater = renderer as IUpdater
-                updater.update(cycleAttributes)
-            }
             renderer.render(canvas, cycleAttributes)
         }
+    }
+
+    override fun addUpdater(updater: IUpdater) {
+        updaterRepository.addUpdater(updater)
+    }
+
+    override fun getUpdater(): List<IUpdater> {
+        return updaterRepository.getUpdater()
     }
 }

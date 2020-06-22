@@ -8,8 +8,10 @@ import com.yobuligo.snakeandroidcanvas.ui.element.ElementRepository
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeMover
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeMover
+import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdater
 
-class ElementRenderer(val snake: ISnake) : IRenderer, IUpdater {
+class ElementRenderer(val snake: ISnake) : IRenderer,
+    IUpdater {
     val snakeMover: ISnakeMover = SnakeMover()
 
     override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
