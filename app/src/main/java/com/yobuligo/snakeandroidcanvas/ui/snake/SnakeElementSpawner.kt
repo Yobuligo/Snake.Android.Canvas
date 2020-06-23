@@ -1,12 +1,17 @@
 package com.yobuligo.snakeandroidcanvas.ui.snake
 
+import android.graphics.Color
 import com.yobuligo.snakeandroidcanvas.options.Config
+import com.yobuligo.snakeandroidcanvas.ui.color.ColorGenerator
+import com.yobuligo.snakeandroidcanvas.ui.color.IColorGenerator
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import kotlin.random.Random
 
-class SnakeElementSpawner(val autoSpawnCycleInMilli: Long) : ISnakeElementSpawner {
+class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boolean) :
+    ISnakeElementSpawner {
     private lateinit var snakeElement: ISnakeElement
     private var lastSpawnInMilli: Long = 0.toLong()
+    private val colorGenerator: IColorGenerator = ColorGenerator()
 
     override fun update(cycleAttributes: ICycleAttributes) {
         spawnElement(cycleAttributes)
@@ -25,6 +30,12 @@ class SnakeElementSpawner(val autoSpawnCycleInMilli: Long) : ISnakeElementSpawne
         snakeElement = SnakeElement(null)
         snakeElement.pos.x = Random.nextInt(2, numberElementsX) * Config.ELEMENT_SIZE
         snakeElement.pos.y = Random.nextInt(2, numberElementsY) * Config.ELEMENT_SIZE
+
+        if (isMultiColor) {
+            snakeElement.color = colorGenerator.next()
+        } else {
+            snakeElement.color = Color.RED
+        }
 
         lastSpawnInMilli = cycleAttributes.currentTimeinMilli
     }

@@ -8,5 +8,5 @@ import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 class SnakeElement(override var predecessor: IMovableElement?) : Element(), ISnakeElement {
     override var direction: Direction = predecessor?.direction ?: Direction.RIGHT
     override var follower: IMovableElement? = null
-    override val color: Int = Color.RED
+    override var color: Int = Color.RED
 }

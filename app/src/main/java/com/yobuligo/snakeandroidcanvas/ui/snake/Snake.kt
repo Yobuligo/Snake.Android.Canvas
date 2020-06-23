@@ -9,7 +9,7 @@ class Snake : Element(), ISnake {
     override var direction: Direction = Direction.RIGHT
     override var follower: IMovableElement? = null
     override var predecessor: IMovableElement? = null
-    override val color: Int = Color.BLUE
+    override var color: Int = Color.BLUE
     override var movable: Boolean = true
 
     override fun hasLastElement(): Boolean {

@@ -1,18 +1,29 @@
 package com.yobuligo.snakeandroidcanvas.ui.controller
 
 import android.graphics.Canvas
+import com.yobuligo.snakeandroidcanvas.builder.Coordinate
+import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickObserver
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickable
 import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeController
 
-class DigitalController(val snakeController: ISnakeController) : IRenderer, IClickObserver {
-    private val posY: Int = 1200
-    private val cursorElementLeft = CursorElement(800, posY + 200, this)
-    private val cursorElementRight = CursorElement(1200, posY + 200, this)
-    private val cursorElementUp = CursorElement(1000, posY, this)
-    private val cursorElementDown = CursorElement(1000, posY + 400, this)
+class DigitalController(val snakeController: ISnakeController) : IDigitalController,
+    IClickObserver {
+    private var position: ICoordinate = Coordinate(800, 1200)
+    private var cursorElementLeft = CursorElement(position.x, position.y + 200, this)
+    private var cursorElementRight = CursorElement(position.x + 400, position.y + 200, this)
+    private var cursorElementUp = CursorElement(position.x + 200, position.y, this)
+    private var cursorElementDown = CursorElement(position.x + 200, position.y + 400, this)
+
+    constructor(snakeController: ISnakeController, position: ICoordinate) : this(snakeController) {
+        this.position = position
+        cursorElementLeft = CursorElement(position.x, position.y + 200, this)
+        cursorElementRight = CursorElement(position.x + 400, position.y + 200, this)
+        cursorElementUp = CursorElement(position.x + 200, position.y, this)
+        cursorElementDown = CursorElement(position.x + 200, position.y + 400, this)
+    }
 
     override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
         cursorElementLeft.render(canvas, cycleAttributes)

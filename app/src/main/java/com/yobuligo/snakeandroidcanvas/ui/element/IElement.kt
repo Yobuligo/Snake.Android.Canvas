@@ -6,5 +6,5 @@ interface IElement {
     var pos: ICoordinate
     var width: Int
     var height: Int
-    val color: Int
+    var color: Int
 }

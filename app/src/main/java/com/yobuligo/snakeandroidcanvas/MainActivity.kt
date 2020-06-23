@@ -2,14 +2,13 @@ package com.yobuligo.snakeandroidcanvas
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.yobuligo.snakeandroidcanvas.builder.Coordinate
-import com.yobuligo.snakeandroidcanvas.builder.FrameBuilder
+import com.yobuligo.snakeandroidcanvas.builder.*
 import com.yobuligo.snakeandroidcanvas.builder.SnakeBuilder
-import com.yobuligo.snakeandroidcanvas.builder.SnakeElementSpawnerBuilder
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.ElementSize
 import com.yobuligo.snakeandroidcanvas.options.Speed
 import com.yobuligo.snakeandroidcanvas.ui.controller.DigitalController
+import com.yobuligo.snakeandroidcanvas.ui.controller.IDigitalController
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ElementRenderer
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeController
@@ -30,12 +29,17 @@ class MainActivity : AppCompatActivity() {
         frameBuilder.build()
 
         val snakeElementSpawnerBuilder = SnakeElementSpawnerBuilder()
-        snakeElementSpawnerBuilder.setAutoSpawnCycleInMilli(500)
+        snakeElementSpawnerBuilder.setAutoSpawnCycleInMilli(1000)
+        snakeElementSpawnerBuilder.setActiveMultiColor()
+        canvasView.addUpdater(snakeElementSpawnerBuilder.build())
 
         val snake: ISnake = buildSnake()
-        canvasView.addUpdater(snakeElementSpawnerBuilder.build())
         canvasView.addRenderer(ElementRenderer(snake))
-        canvasView.addRenderer(DigitalController(SnakeController(snake)))
+
+        val digitalControllerBuilder: IDigitalControllerBuilder = DigitalControllerBuilder()
+        val digitalController = digitalControllerBuilder.build(SnakeController(snake))
+        canvasView.addRenderer(digitalController)
+
         setContentView(canvasView)
     }
 
