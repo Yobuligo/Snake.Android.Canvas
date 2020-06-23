@@ -8,7 +8,11 @@ import android.view.MotionEvent
 import android.view.View
 import com.yobuligo.snakeandroidcanvas.ui.clickable.ClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickableRepository
+import com.yobuligo.snakeandroidcanvas.ui.collision.CollisionDetector
+import com.yobuligo.snakeandroidcanvas.ui.collision.ICollisionDetector
 import com.yobuligo.snakeandroidcanvas.ui.renderer.*
+import com.yobuligo.snakeandroidcanvas.ui.snake.Snake
+import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeRepository
 import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdater
 import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdaterRepository
 import com.yobuligo.snakeandroidcanvas.ui.updater.UpdaterRepository
@@ -19,6 +23,7 @@ class CanvasView(context: Context) : View(context),
     private val clickableRepository: IClickableRepository = ClickableRepository.getInstance()
     private val rendererRepository: IRendererRepository = RendererRepository()
     private val updaterRepository: IUpdaterRepository = UpdaterRepository()
+    private val collisionDetector: ICollisionDetector = CollisionDetector()
     private var lastTimeInMilli: Long = 0.toLong()
     private var currentTimeInMilli: Long = 0.toLong()
     private var elapsedTimeInMilli: Long = 0.toLong()
@@ -27,11 +32,11 @@ class CanvasView(context: Context) : View(context),
         super.onDraw(canvas)
         val cycleAttributes = createCycleAttributes()
         updateElements(cycleAttributes)
+        detectCollision(cycleAttributes)
         renderCanvas(canvas)
         renderElements(canvas, cycleAttributes)
         lastTimeInMilli = currentTimeInMilli
         invalidate()
-
     }
 
     private fun createCycleAttributes(): ICycleAttributes {
@@ -66,9 +71,15 @@ class CanvasView(context: Context) : View(context),
         return rendererRepository.getRenderer()
     }
 
-    fun updateElements(cycleAttributes: ICycleAttributes) {
+    private fun updateElements(cycleAttributes: ICycleAttributes) {
         for (updater in getUpdater()) {
             updater.update(cycleAttributes)
+        }
+    }
+
+    private fun detectCollision(cycleAttributes: ICycleAttributes) {
+        for (snake in SnakeRepository.getInstance().getSnakes()) {
+            collisionDetector.checkSnake(snake)
         }
     }
 

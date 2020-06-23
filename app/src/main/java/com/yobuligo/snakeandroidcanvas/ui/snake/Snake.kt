@@ -12,6 +12,11 @@ class Snake : Element(), ISnake {
     override var color: Int = Color.BLUE
     override var movable: Boolean = true
 
+    init {
+        val snakeRepository: ISnakeRepository = SnakeRepository.getInstance()
+        snakeRepository.addSnake(this)
+    }
+
     override fun hasLastElement(): Boolean {
         return follower != null
     }

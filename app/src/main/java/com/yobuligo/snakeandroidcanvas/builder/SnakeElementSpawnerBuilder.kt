@@ -7,12 +7,14 @@ class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
     private var autoSpawnCycleInMilli: Long = 0.toLong()
     private var isMultiColor: Boolean = false
 
-    override fun setAutoSpawnCycleInMilli(autoSpawnCycleInMilli: Long) {
+    override fun setAutoSpawnCycleInMilli(autoSpawnCycleInMilli: Long): ISnakeElementSpawnerBuilder {
         this.autoSpawnCycleInMilli = autoSpawnCycleInMilli
+        return this
     }
 
-    override fun setActiveMultiColor() {
+    override fun setActiveMultiColor(): ISnakeElementSpawnerBuilder {
         isMultiColor = true
+        return this
     }
 
     override fun build(): ISnakeElementSpawner {

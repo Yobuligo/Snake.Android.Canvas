@@ -8,9 +8,10 @@ class DigitalControllerBuilder : IDigitalControllerBuilder {
     private lateinit var position: ICoordinate
     private var positionChanged: Boolean = false
 
-    override fun setPosition(position: ICoordinate) {
+    override fun setPosition(position: ICoordinate): IDigitalControllerBuilder {
         this.position = position
         positionChanged = true
+        return this
     }
 
     override fun build(snakeController: ISnakeController): IDigitalController {
