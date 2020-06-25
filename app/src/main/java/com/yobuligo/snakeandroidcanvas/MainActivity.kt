@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
     private fun buildSnake(): ISnake {
         val snakeBuilder = SnakeBuilder()
         //snakeBuilder.startDirection = Direction.LEFT
-        snakeBuilder.startPos = Coordinate(500, 500)
-        snakeBuilder.startNumberElements = 8
-        snakeBuilder.movable = true
+        snakeBuilder.setStartPos(Coordinate(500, 500))
+        snakeBuilder.setStartNumberElements(8)
+        snakeBuilder.setMovable(true)
         return snakeBuilder.build()
     }
 }

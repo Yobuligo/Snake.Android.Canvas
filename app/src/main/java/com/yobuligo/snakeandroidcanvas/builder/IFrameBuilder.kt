@@ -1,8 +1,8 @@
 package com.yobuligo.snakeandroidcanvas.builder
 
 interface IFrameBuilder {
-    fun setPosLeftTop(coordinate: ICoordinate)
-    fun setPosRightBottom(coordinate: ICoordinate)
-    fun setNoBorders()
+    fun setPosLeftTop(coordinate: ICoordinate): IFrameBuilder
+    fun setPosRightBottom(coordinate: ICoordinate): IFrameBuilder
+    fun setNoBorders(): IFrameBuilder
     fun build()
 }

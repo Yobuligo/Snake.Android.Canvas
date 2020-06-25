@@ -8,16 +8,19 @@ class FrameBuilder : IFrameBuilder {
     private var posRightBottom: ICoordinate = Coordinate(800, 800)
     private var noBorders: Boolean = false
 
-    override fun setPosLeftTop(coordinate: ICoordinate) {
+    override fun setPosLeftTop(coordinate: ICoordinate): IFrameBuilder {
         posLeftTop = coordinate
+        return this
     }
 
-    override fun setPosRightBottom(coordinate: ICoordinate) {
+    override fun setPosRightBottom(coordinate: ICoordinate): IFrameBuilder {
         posRightBottom = coordinate
+        return this
     }
 
-    override fun setNoBorders() {
+    override fun setNoBorders(): IFrameBuilder {
         noBorders = true
+        return this
     }
 
     override fun build() {
