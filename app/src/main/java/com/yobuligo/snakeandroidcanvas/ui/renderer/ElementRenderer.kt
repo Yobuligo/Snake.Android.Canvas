@@ -11,8 +11,8 @@ import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeMover
 import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdater
 
 class ElementRenderer(val snake: ISnake) : IRenderer,
-    IUpdater {
-    val snakeMover: ISnakeMover = SnakeMover()
+        IUpdater {
+        val snakeMover: ISnakeMover = SnakeMover()
 
     override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
         val paint = Paint()

@@ -36,13 +36,12 @@ class MainActivity : AppCompatActivity() {
         val snake: ISnake = buildSnake()
         canvasView.addRenderer(ElementRenderer(snake))
 
-        val digitalControllerBuilder: IDigitalControllerBuilder = DigitalControllerBuilder()
+/*        val digitalControllerBuilder: IDigitalControllerBuilder = DigitalControllerBuilder()
         val digitalController = digitalControllerBuilder.build(SnakeController(snake))
-        canvasView.addRenderer(digitalController)
+        canvasView.addRenderer(digitalController)*/
 
         canvasView.addRenderer(
             DigitalControllerBuilder()
-                .setPosition(Coordinate(100, 1200))
                 .build(SnakeController(snake))
         )
 
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         val snakeBuilder = SnakeBuilder()
         //snakeBuilder.startDirection = Direction.LEFT
         snakeBuilder.startPos = Coordinate(500, 500)
-        snakeBuilder.startNumberElements = 1
+        snakeBuilder.startNumberElements = 8
         snakeBuilder.movable = true
         return snakeBuilder.build()
     }
