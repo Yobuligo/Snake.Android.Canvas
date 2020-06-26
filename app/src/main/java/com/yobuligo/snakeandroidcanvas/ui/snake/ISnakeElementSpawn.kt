@@ -1,4 +1,6 @@
 package com.yobuligo.snakeandroidcanvas.ui.snake
 
-interface ISnakeElementSpawn : ISnakeElement {
+import com.yobuligo.snakeandroidcanvas.ui.element.IElement
+
+interface ISnakeElementSpawn : IElement {
 }

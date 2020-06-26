@@ -15,4 +15,9 @@ abstract open class Element : IElement {
         val elementRepository = ElementRepository.getInstance()
         elementRepository.addElement(this)
     }
+
+    override fun destroy() {
+        val elementRepository = ElementRepository.getInstance()
+        elementRepository.removeElement(this)
+    }
 }

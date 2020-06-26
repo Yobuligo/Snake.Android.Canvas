@@ -7,4 +7,5 @@ interface IElement {
     var width: Int
     var height: Int
     var color: Int
+    fun destroy()
 }

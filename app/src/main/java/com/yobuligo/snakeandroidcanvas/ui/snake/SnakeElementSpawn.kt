@@ -1,6 +1,8 @@
 package com.yobuligo.snakeandroidcanvas.ui.snake
 
-import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
+import android.graphics.Color
+import com.yobuligo.snakeandroidcanvas.ui.element.Element
 
-class SnakeElementSpawn(predecessor:IMovableElement) : SnakeElement(predecessor), ISnakeElementSpawn {
+class SnakeElementSpawn() : Element(), ISnakeElementSpawn {
+    override var color: Int = Color.RED
 }

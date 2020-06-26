@@ -9,7 +9,6 @@ import kotlin.random.Random
 
 class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boolean) :
     ISnakeElementSpawner {
-    private lateinit var snakeElement: ISnakeElement
     private var lastSpawnInMilli: Long = 0.toLong()
     private val colorGenerator: IColorGenerator = ColorGenerator()
 
@@ -27,14 +26,14 @@ class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boo
         val numberElementsY = 950 / Config.ELEMENT_SIZE
 
         //TODO Check for Collision
-        snakeElement = SnakeElement(null)
-        snakeElement.pos.x = Random.nextInt(2, numberElementsX) * Config.ELEMENT_SIZE
-        snakeElement.pos.y = Random.nextInt(2, numberElementsY) * Config.ELEMENT_SIZE
+        val snakeElementSpawn = SnakeElementSpawn()
+        snakeElementSpawn.pos.x = Random.nextInt(2, numberElementsX) * Config.ELEMENT_SIZE
+        snakeElementSpawn.pos.y = Random.nextInt(2, numberElementsY) * Config.ELEMENT_SIZE
 
         if (isMultiColor) {
-            snakeElement.color = colorGenerator.next()
+            snakeElementSpawn.color = colorGenerator.next()
         } else {
-            snakeElement.color = Color.RED
+            snakeElementSpawn.color = Color.RED
         }
 
         lastSpawnInMilli = cycleAttributes.currentTimeinMilli

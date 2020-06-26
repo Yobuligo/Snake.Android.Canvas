@@ -19,17 +19,17 @@ class MainActivity : AppCompatActivity() {
         val canvasView = CanvasView(this)
 
         Config.ELEMENT_SIZE = ElementSize.NORMAL.size
-        Config.SPEED = Speed.FAST
+        Config.SPEED = Speed.HIGHWAY
 
-        val frameBuilder = FrameBuilder()
-        frameBuilder.setPosLeftTop(Coordinate(50, 50))
-        frameBuilder.setPosRightBottom(Coordinate(950, 950))
-        frameBuilder.build()
+        FrameBuilder()
+            .setPosLeftTop(Coordinate(50, 50))
+            .setPosRightBottom(Coordinate(950, 950))
+            .build()
 
         canvasView.addUpdater(
             SnakeElementSpawnerBuilder()
                 .setActiveMultiColor()
-                .setAutoSpawnCycleInMilli(5000)
+                .setAutoSpawnCycleInMilli(4000)
                 .build()
         )
 
