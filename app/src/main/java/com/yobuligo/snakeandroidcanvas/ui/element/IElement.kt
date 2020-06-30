@@ -8,4 +8,5 @@ interface IElement {
     var height: Int
     var color: Int
     fun destroy()
+    fun setOnElementDestroyListener(elementDestroyListener: IElementDestroyListener)
 }

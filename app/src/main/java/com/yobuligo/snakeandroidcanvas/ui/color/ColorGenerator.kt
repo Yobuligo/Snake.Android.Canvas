@@ -5,7 +5,8 @@ import kotlin.random.Random
 
 class ColorGenerator : IColorGenerator {
     override fun next(): Int {
-        when (Random.nextInt(1, 12)) {
+        //exclude background color (WHITE, TRANSPARENT)
+        when (Random.nextInt(1, 10)) {
             1 -> return Color.RED
             2 -> return Color.GREEN
             3 -> return Color.BLUE
@@ -15,10 +16,7 @@ class ColorGenerator : IColorGenerator {
             7 -> return Color.DKGRAY
             8 -> return Color.GRAY
             9 -> return Color.LTGRAY
-            10 -> return Color.TRANSPARENT
-            11 -> return Color.WHITE
-            12 -> return Color.YELLOW
-
+            10 -> return Color.YELLOW
         }
 
         return Color.RED
