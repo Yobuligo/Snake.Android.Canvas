@@ -16,6 +16,7 @@ class DigitalController(val snakeController: ISnakeController) : IDigitalControl
     private var cursorElementRight = CursorElement(position.x + 400, position.y + 200, this)
     private var cursorElementUp = CursorElement(position.x + 200, position.y, this)
     private var cursorElementDown = CursorElement(position.x + 200, position.y + 400, this)
+    private var pauseElement = PauseElement(position.x + 200, position.y + 200, this)
 
     constructor(snakeController: ISnakeController, position: ICoordinate) : this(snakeController) {
         this.position = position
@@ -23,6 +24,7 @@ class DigitalController(val snakeController: ISnakeController) : IDigitalControl
         cursorElementRight = CursorElement(position.x + 400, position.y + 200, this)
         cursorElementUp = CursorElement(position.x + 200, position.y, this)
         cursorElementDown = CursorElement(position.x + 200, position.y + 400, this)
+        pauseElement = PauseElement(position.x + 200, position.y + 200, this)
     }
 
     override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
@@ -30,6 +32,7 @@ class DigitalController(val snakeController: ISnakeController) : IDigitalControl
         cursorElementRight.render(canvas, cycleAttributes)
         cursorElementUp.render(canvas, cycleAttributes)
         cursorElementDown.render(canvas, cycleAttributes)
+        pauseElement.render(canvas, cycleAttributes)
     }
 
     override fun onClick(clickable: IClickable) {
@@ -38,6 +41,7 @@ class DigitalController(val snakeController: ISnakeController) : IDigitalControl
             cursorElementRight -> snakeController.onRight()
             cursorElementUp -> snakeController.onUp()
             cursorElementDown -> snakeController.onDown()
+            pauseElement -> snakeController.onPause()
         }
     }
 }

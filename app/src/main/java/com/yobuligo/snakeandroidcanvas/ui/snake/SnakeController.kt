@@ -18,4 +18,12 @@ class SnakeController(val snake: ISnake) : ISnakeController {
     override fun onDown() {
         snake.direction = Direction.DOWN
     }
+
+    override fun onPause() {
+        if (snake.movable) {
+            snake.movable = false
+        } else {
+            snake.movable = true
+        }
+    }
 }

@@ -8,14 +8,14 @@ import com.yobuligo.snakeandroidcanvas.ui.clickable.ClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickObserver
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickable
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickableRepository
-import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
+import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 
-class CursorElement(override var x: Int, override var y: Int, val clickobserver: IClickObserver) :
+class PauseElement(override var x: Int, override var y: Int, val clickObserver: IClickObserver) :
     IRenderer, IClickable {
 
     init {
-        val clickableRepository: IClickableRepository = ClickableRepository.getInstance()
+        val clickableRepository = ClickableRepository.getInstance()
         clickableRepository.addClickable(this)
     }
 
@@ -24,18 +24,26 @@ class CursorElement(override var x: Int, override var y: Int, val clickobserver:
         paint.color = Color.BLUE
         paint.style = Paint.Style.FILL
 
-        val rect: Rect = Rect()
-        rect.left = x
-        rect.top = y
-        rect.right = x + width
-        rect.bottom = y + height
+        var rect: Rect = Rect()
+        rect.left = x + 40
+        rect.top = y + 40
+        rect.right = x + 80
+        rect.bottom = y + 160
+        canvas?.drawRect(rect, paint)
+
+        rect.left = x + 120
+        rect.top = y + 40
+        rect.right = x + 160
+        rect.bottom = y + 160
         canvas?.drawRect(rect, paint)
     }
 
     override val width: Int = 200
+
     override val height: Int = 200
 
     override fun onClick() {
-        clickobserver.onClick(this)
+        clickObserver.onClick(this)
     }
+
 }

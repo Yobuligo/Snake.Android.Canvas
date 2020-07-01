@@ -5,4 +5,5 @@ interface ISnakeController {
     fun onRight()
     fun onUp()
     fun onDown()
+    fun onPause()
 }
