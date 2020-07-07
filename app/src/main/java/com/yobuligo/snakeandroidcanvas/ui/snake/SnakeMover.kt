@@ -2,6 +2,7 @@ package com.yobuligo.snakeandroidcanvas.ui.snake
 
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.Direction
+import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 
 class SnakeMover() : ISnakeMover {
@@ -16,13 +17,13 @@ class SnakeMover() : ISnakeMover {
             return
         }
 
-        var element = snake.getLastElement()
+        var element = snake.getLastSnakeElement()
         while (true) {
             if ((element != null) && (element.predecessor != null)) {
                 element.pos.x = element.predecessor!!.pos.x
                 element.pos.y = element.predecessor!!.pos.y
                 element.direction = element.predecessor!!.direction
-                element = element.predecessor
+                element = element.predecessor!!
             } else {
                 moveSnake(snake)
                 updateLastMoveInMilli(cycleAttributes)

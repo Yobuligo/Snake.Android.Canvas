@@ -4,6 +4,9 @@ import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 
 interface ISnake : IMovableElement {
     var movable: Boolean
-    fun hasLastElement(): Boolean
-    fun getLastElement(): IMovableElement?
+    fun hasLastSnakeElement(): Boolean
+    fun getLastSnakeElement(): IMovableElement
+    fun appendSnakeElement(snakeElement: ISnakeElement)
+    fun createAndAppendCollectedSnakeElement(): ISnakeElement
+    fun createAndAppendInitialSnakeElement(): ISnakeElement
 }
