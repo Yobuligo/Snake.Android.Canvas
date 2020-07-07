@@ -6,6 +6,7 @@ import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeElementSpawner
 class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
     private var autoSpawnCycleInMilli: Long = 0.toLong()
     private var isMultiColor: Boolean = false
+    private var spawnNumberElements: Int = 0
 
     override fun setAutoSpawnCycleInMilli(autoSpawnCycleInMilli: Long): ISnakeElementSpawnerBuilder {
         this.autoSpawnCycleInMilli = autoSpawnCycleInMilli
@@ -17,7 +18,18 @@ class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
         return this
     }
 
+    override fun setSpawnNumberElementsAtBegin(spawnNumberElements: Int): ISnakeElementSpawnerBuilder {
+        this.spawnNumberElements = spawnNumberElements
+        return this
+    }
+
     override fun build(): ISnakeElementSpawner {
-        return SnakeElementSpawner(autoSpawnCycleInMilli, isMultiColor)
+        val snakeElementSpawner = SnakeElementSpawner(autoSpawnCycleInMilli, isMultiColor)
+        if (spawnNumberElements > 0) {
+            for (i in 1..spawnNumberElements) {
+                snakeElementSpawner.spawnElement()
+            }
+        }
+        return snakeElementSpawner
     }
 }

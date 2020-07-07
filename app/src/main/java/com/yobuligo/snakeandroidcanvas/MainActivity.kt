@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             SnakeElementSpawnerBuilder()
                 .setActiveMultiColor()
                 .setAutoSpawnCycleInMilli(0)
+                .setSpawnNumberElementsAtBegin(20)
                 .build()
         )
 

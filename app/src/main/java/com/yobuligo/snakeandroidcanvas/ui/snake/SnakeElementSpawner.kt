@@ -2,13 +2,13 @@ package com.yobuligo.snakeandroidcanvas.ui.snake
 
 import android.graphics.Color
 import android.util.Log
-import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.ui.color.ColorGenerator
 import com.yobuligo.snakeandroidcanvas.ui.color.IColorGenerator
 import com.yobuligo.snakeandroidcanvas.ui.element.IElement
 import com.yobuligo.snakeandroidcanvas.ui.element.IElementDestroyListener
+import com.yobuligo.snakeandroidcanvas.ui.playfield.PlayfieldAdministrator
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
-import kotlin.random.Random
+import java.util.*
 
 class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boolean) :
     ISnakeElementSpawner, IElementDestroyListener {
@@ -16,23 +16,9 @@ class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boo
     private val colorGenerator: IColorGenerator = ColorGenerator()
     private var hasActiveSnakeElementSpawn: Boolean = false
 
-    override fun update(cycleAttributes: ICycleAttributes) {
-        spawnElement(cycleAttributes)
-    }
-
-    private fun spawnElement(cycleAttributes: ICycleAttributes) {
-        if (needsSpawnElement(cycleAttributes) == false) {
-            return
-        }
-
-        //TODO: Replace 800 by Gamefield Size
-        val numberElementsX = 950 / Config.ELEMENT_SIZE
-        val numberElementsY = 950 / Config.ELEMENT_SIZE
-
-        //TODO Check for Collision
+    override fun spawnElement(): ISnakeElementSpawn {
         var snakeElementSpawn = SnakeElementSpawn()
-        snakeElementSpawn.pos.x = Random.nextInt(2, numberElementsX) * Config.ELEMENT_SIZE
-        snakeElementSpawn.pos.y = Random.nextInt(2, numberElementsY) * Config.ELEMENT_SIZE
+        snakeElementSpawn.pos = PlayfieldAdministrator.instance.getNextFreeRandomCoordinate()
 
         if (isMultiColor) {
             snakeElementSpawn.color = colorGenerator.next()
@@ -40,7 +26,7 @@ class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boo
             snakeElementSpawn.color = Color.RED
         }
 
-        lastSpawnInMilli = cycleAttributes.currentTimeinMilli
+        lastSpawnInMilli = Calendar.getInstance().timeInMillis
         snakeElementSpawn.setOnElementDestroyListener(this)
 
         hasActiveSnakeElementSpawn = true
@@ -48,6 +34,20 @@ class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boo
             "SnakeElementSpawner",
             "spawnElement: Snake Element Spawn was spawned at X: ${snakeElementSpawn.pos.x}, Y: ${snakeElementSpawn.pos.y} Color: ${snakeElementSpawn.color}"
         )
+
+        return snakeElementSpawn
+    }
+
+    override fun update(cycleAttributes: ICycleAttributes) {
+        spawnElementCyclic(cycleAttributes)
+    }
+
+    private fun spawnElementCyclic(cycleAttributes: ICycleAttributes) {
+        if (needsSpawnElement(cycleAttributes) == false) {
+            return
+        }
+
+        spawnElement()
     }
 
     private fun needsSpawnElement(cycleAttributes: ICycleAttributes): Boolean {
