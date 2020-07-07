@@ -5,5 +5,6 @@ import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeController
 
 interface IDigitalControllerBuilder {
     fun setPosition(position: ICoordinate): IDigitalControllerBuilder
+    fun setDisplayPauseButton(): IDigitalControllerBuilder
     fun build(snakeController: ISnakeController): IDigitalController
 }

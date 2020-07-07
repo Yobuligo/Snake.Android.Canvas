@@ -19,7 +19,10 @@ class MainActivity : AppCompatActivity() {
         val canvasView = CanvasView(this)
 
         Config.ELEMENT_SIZE = ElementSize.NORMAL.size
-        Config.SPEED = Speed.FAST
+        Config.SPEED = Speed.SUPERFAST
+
+        val snake: ISnake = buildSnake()
+        canvasView.addRenderer(ElementRenderer(snake))
 
         FrameBuilder()
             .setPosLeftTop(Coordinate(50, 50))
@@ -33,15 +36,9 @@ class MainActivity : AppCompatActivity() {
                 .build()
         )
 
-        val snake: ISnake = buildSnake()
-        canvasView.addRenderer(ElementRenderer(snake))
-
-/*        val digitalControllerBuilder: IDigitalControllerBuilder = DigitalControllerBuilder()
-        val digitalController = digitalControllerBuilder.build(SnakeController(snake))
-        canvasView.addRenderer(digitalController)*/
-
         canvasView.addRenderer(
             DigitalControllerBuilder()
+                .setDisplayPauseButton()
                 .build(SnakeController(snake))
         )
 
@@ -49,11 +46,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buildSnake(): ISnake {
-        val snakeBuilder = SnakeBuilder()
-        //snakeBuilder.startDirection = Direction.LEFT
-        snakeBuilder.setStartPos(Coordinate(500, 500))
-        snakeBuilder.setStartNumberElements(8)
-        snakeBuilder.setMovable(true)
-        return snakeBuilder.build()
+        return SnakeBuilder()
+            //snakeBuilder.startDirection = Direction.LEFT
+            .setStartPos(Coordinate(500, 500))
+            .setStartNumberElements(8)
+            .setMovable(true)
+            .build()
     }
 }

@@ -11,8 +11,8 @@ import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeMover
 import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdater
 
 class ElementRenderer(val snake: ISnake) : IRenderer,
-        IUpdater {
-        val snakeMover: ISnakeMover = SnakeMover()
+    IUpdater {
+    val snakeMover: ISnakeMover = SnakeMover()
 
     override fun render(canvas: Canvas?, cycleAttributes: ICycleAttributes) {
         val paint = Paint()
@@ -20,14 +20,18 @@ class ElementRenderer(val snake: ISnake) : IRenderer,
         paint.style = Paint.Style.FILL
 
         val elementRepository = ElementRepository.getInstance()
-        for (element in elementRepository.getElements()) {
-            paint.color = element.color
-            val rect: Rect = Rect()
-            rect.left = element.pos.x
-            rect.top = element.pos.y
-            rect.right = element.width
-            rect.bottom = element.height
-            canvas?.drawRect(rect, paint)
+
+        for (index in elementRepository.getElements().size - 1 downTo 0) {
+            val element = elementRepository.getElements()[index]
+            if (element != null) {
+                paint.color = element.color
+                val rect: Rect = Rect()
+                rect.left = element.pos.x
+                rect.top = element.pos.y
+                rect.right = element.width
+                rect.bottom = element.height
+                canvas?.drawRect(rect, paint)
+            }
         }
     }
 

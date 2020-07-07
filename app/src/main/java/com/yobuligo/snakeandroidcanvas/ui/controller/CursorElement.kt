@@ -25,10 +25,10 @@ class CursorElement(override var x: Int, override var y: Int, val clickobserver:
         paint.style = Paint.Style.FILL
 
         val rect: Rect = Rect()
-        rect.left = x
-        rect.top = y
-        rect.right = x + width
-        rect.bottom = y + height
+        rect.left = x + 5
+        rect.top = y + 5
+        rect.right = x + width - 10
+        rect.bottom = y + height - 10
         canvas?.drawRect(rect, paint)
     }
 

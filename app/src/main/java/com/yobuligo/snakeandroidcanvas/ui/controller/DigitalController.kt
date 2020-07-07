@@ -9,7 +9,8 @@ import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeController
 
-class DigitalController(val snakeController: ISnakeController) : IDigitalController,
+class DigitalController(val snakeController: ISnakeController, val displayPauseButton: Boolean) :
+    IDigitalController,
     IClickObserver {
     private var position: ICoordinate = Coordinate(800, 1200)
     private var cursorElementLeft = CursorElement(position.x, position.y + 200, this)
@@ -18,7 +19,11 @@ class DigitalController(val snakeController: ISnakeController) : IDigitalControl
     private var cursorElementDown = CursorElement(position.x + 200, position.y + 400, this)
     private var pauseElement = PauseElement(position.x + 200, position.y + 200, this)
 
-    constructor(snakeController: ISnakeController, position: ICoordinate) : this(snakeController) {
+    constructor(
+        snakeController: ISnakeController,
+        position: ICoordinate,
+        displayPauseButton: Boolean
+    ) : this(snakeController, displayPauseButton) {
         this.position = position
         cursorElementLeft = CursorElement(position.x, position.y + 200, this)
         cursorElementRight = CursorElement(position.x + 400, position.y + 200, this)
@@ -32,7 +37,9 @@ class DigitalController(val snakeController: ISnakeController) : IDigitalControl
         cursorElementRight.render(canvas, cycleAttributes)
         cursorElementUp.render(canvas, cycleAttributes)
         cursorElementDown.render(canvas, cycleAttributes)
-        pauseElement.render(canvas, cycleAttributes)
+        if (displayPauseButton) {
+            pauseElement.render(canvas, cycleAttributes)
+        }
     }
 
     override fun onClick(clickable: IClickable) {

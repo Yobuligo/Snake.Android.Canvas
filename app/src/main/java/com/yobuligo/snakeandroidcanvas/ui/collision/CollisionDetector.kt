@@ -20,7 +20,6 @@ class CollisionDetector : ICollisionDetector {
                 continue
             }
 
-            //Check is spawned snake element?
             if (element is ISnakeElementSpawn) {
                 transferSnakeElementSpawntoSnakeElement(element, snake)
                 element.destroy()
@@ -38,12 +37,8 @@ class CollisionDetector : ICollisionDetector {
         snakeElement.direction = lastElement!!.direction
         snakeElement.predecessor = lastElement
         lastElement?.follower = snakeElement
-        when (lastElement.direction) {
-            Direction.DOWN, Direction.UP, Direction.RIGHT -> snakeElement.pos.x =
-                lastElement.pos.x - Config.ELEMENT_SIZE
-            Direction.LEFT -> snakeElement.pos.x = lastElement.pos.x + Config.ELEMENT_SIZE
-        }
 
+        snakeElement.pos.x = lastElement.pos.x
         snakeElement.pos.y = lastElement.pos.y
     }
 }
