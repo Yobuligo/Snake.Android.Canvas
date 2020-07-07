@@ -11,11 +11,11 @@ import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.collision.CollisionDetector
 import com.yobuligo.snakeandroidcanvas.ui.collision.ICollisionDetector
 import com.yobuligo.snakeandroidcanvas.ui.renderer.*
-import com.yobuligo.snakeandroidcanvas.ui.snake.Snake
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeRepository
 import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdater
 import com.yobuligo.snakeandroidcanvas.ui.updater.IUpdaterRepository
 import com.yobuligo.snakeandroidcanvas.ui.updater.UpdaterRepository
+import java.lang.Exception
 import java.util.*
 
 class CanvasView(context: Context) : View(context),
