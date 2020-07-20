@@ -1,5 +1,7 @@
 package com.yobuligo.snakeandroidcanvas.ui.element
 
+import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
+
 class ElementRepository private constructor() : IElementRepository {
     companion object {
         private val instance: IElementRepository = ElementRepository()
@@ -21,5 +23,15 @@ class ElementRepository private constructor() : IElementRepository {
 
     override fun getElements(): List<IElement> {
         return elementList
+    }
+
+    override fun findElementsAtPos(coordinate: ICoordinate): List<IElement> {
+        val elements: MutableList<IElement> = mutableListOf<IElement>()
+        for (element in elementList) {
+            if ((element.pos.x == coordinate.x) && (element.pos.y == coordinate.y)) {
+                elements.add(element)
+            }
+        }
+        return elements
     }
 }

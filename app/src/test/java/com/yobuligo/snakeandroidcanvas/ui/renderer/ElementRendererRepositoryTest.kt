@@ -2,7 +2,7 @@ package com.yobuligo.snakeandroidcanvas.ui.renderer
 
 import junit.framework.TestCase
 
-class RendererRepositoryTest : TestCase() {
+class ElementRendererRepositoryTest : TestCase() {
 
     fun testAddRenderer() {
         val rendererRepository = RendererRepository()
