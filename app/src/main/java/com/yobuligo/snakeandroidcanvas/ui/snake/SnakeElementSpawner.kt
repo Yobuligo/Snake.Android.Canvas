@@ -10,7 +10,11 @@ import com.yobuligo.snakeandroidcanvas.ui.playfield.PlayfieldAdministrator
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import java.util.*
 
-class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boolean) :
+class SnakeElementSpawner(
+    val autoSpawnCycleInMilli: Long,
+    val isMultiColor: Boolean,
+    val deactivateAutoSpawn: Boolean
+) :
     ISnakeElementSpawner, IElementDestroyListener {
     private var lastSpawnInMilli: Long = 0.toLong()
     private val colorGenerator: IColorGenerator = ColorGenerator()
@@ -51,6 +55,10 @@ class SnakeElementSpawner(val autoSpawnCycleInMilli: Long, val isMultiColor: Boo
     }
 
     private fun needsSpawnElement(cycleAttributes: ICycleAttributes): Boolean {
+        if (deactivateAutoSpawn) {
+            return false
+        }
+
         if (lastSpawnInMilli == 0.toLong()) {
             lastSpawnInMilli = cycleAttributes.currentTimeinMilli
             Log.i(

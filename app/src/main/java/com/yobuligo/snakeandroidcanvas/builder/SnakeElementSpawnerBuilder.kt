@@ -7,6 +7,7 @@ class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
     private var autoSpawnCycleInMilli: Long = 0.toLong()
     private var isMultiColor: Boolean = false
     private var spawnNumberElements: Int = 0
+    private var deactivateAutoSpawn: Boolean = false
 
     override fun setAutoSpawnCycleInMilli(autoSpawnCycleInMilli: Long): ISnakeElementSpawnerBuilder {
         this.autoSpawnCycleInMilli = autoSpawnCycleInMilli
@@ -23,8 +24,13 @@ class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
         return this
     }
 
+    override fun setDeactivateAutoSpawn(): ISnakeElementSpawnerBuilder {
+        deactivateAutoSpawn = true
+        return this
+    }
+
     override fun build(): ISnakeElementSpawner {
-        val snakeElementSpawner = SnakeElementSpawner(autoSpawnCycleInMilli, isMultiColor)
+        val snakeElementSpawner = SnakeElementSpawner(autoSpawnCycleInMilli, isMultiColor, deactivateAutoSpawn)
         if (spawnNumberElements > 0) {
             for (i in 1..spawnNumberElements) {
                 snakeElementSpawner.spawnElement()

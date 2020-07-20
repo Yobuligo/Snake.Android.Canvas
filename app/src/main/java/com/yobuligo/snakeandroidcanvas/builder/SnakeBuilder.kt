@@ -1,6 +1,7 @@
 package com.yobuligo.snakeandroidcanvas.builder
 
 import com.yobuligo.snakeandroidcanvas.options.Direction
+import com.yobuligo.snakeandroidcanvas.options.Speed
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.snake.Snake
 
@@ -9,6 +10,7 @@ internal class SnakeBuilder : ISnakeBuilder {
     private var startDirection: Direction = Direction.RIGHT
     private var startPos: ICoordinate = Coordinate(600, 100)
     private var movable: Boolean = true
+    private var speed: Speed = Speed.MIDDLE
 
     override fun setStartNumberElements(startNumberElements: Int): ISnakeBuilder {
         this.startNumberElements = startNumberElements
@@ -30,11 +32,17 @@ internal class SnakeBuilder : ISnakeBuilder {
         return this
     }
 
+    override fun setSpeed(speed: Speed): ISnakeBuilder {
+        this.speed = speed
+        return this
+    }
+
     override fun build(): ISnake {
         val snake = Snake()
         snake.direction = startDirection
         snake.pos = startPos
         snake.movable = movable
+        snake.speed = speed
         for (number in 1..startNumberElements) {
             snake.createAndAppendInitialSnakeElement()
         }

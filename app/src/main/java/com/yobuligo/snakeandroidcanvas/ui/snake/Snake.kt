@@ -3,6 +3,7 @@ package com.yobuligo.snakeandroidcanvas.ui.snake
 import android.graphics.Color
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.Direction
+import com.yobuligo.snakeandroidcanvas.options.Speed
 import com.yobuligo.snakeandroidcanvas.ui.element.Element
 import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 
@@ -12,6 +13,7 @@ class Snake : Element(), ISnake {
     override var predecessor: IMovableElement? = null
     override var color: Int = Color.BLUE
     override var movable: Boolean = true
+    override var speed: Speed = Speed.MIDDLE
 
     init {
         val snakeRepository: ISnakeRepository = SnakeRepository.getInstance()

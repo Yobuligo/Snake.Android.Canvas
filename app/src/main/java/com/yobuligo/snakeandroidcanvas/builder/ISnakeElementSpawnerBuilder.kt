@@ -6,5 +6,6 @@ interface ISnakeElementSpawnerBuilder {
     fun setAutoSpawnCycleInMilli(autoSpawnCycleInMilli: Long): ISnakeElementSpawnerBuilder
     fun setActiveMultiColor(): ISnakeElementSpawnerBuilder
     fun setSpawnNumberElementsAtBegin(spawnNumberElements: Int): ISnakeElementSpawnerBuilder
+    fun setDeactivateAutoSpawn(): ISnakeElementSpawnerBuilder
     fun build(): ISnakeElementSpawner
 }
