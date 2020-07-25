@@ -5,7 +5,6 @@ import com.yobuligo.snakeandroidcanvas.builder.Coordinate
 import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickObserver
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickable
-import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeController
 

@@ -3,7 +3,6 @@ package com.yobuligo.snakeandroidcanvas
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.yobuligo.snakeandroidcanvas.builder.*
-import com.yobuligo.snakeandroidcanvas.builder.SnakeBuilder
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.ElementSize
 import com.yobuligo.snakeandroidcanvas.options.Speed
@@ -53,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             .setStartPos(Coordinate(500, 500))
             .setStartNumberElements(8)
             .setMovable(true)
+            .setSpeed(Speed.SUPERFAST)
             .build()
     }
 }

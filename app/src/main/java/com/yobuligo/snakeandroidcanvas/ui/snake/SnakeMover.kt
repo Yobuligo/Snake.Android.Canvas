@@ -2,7 +2,6 @@ package com.yobuligo.snakeandroidcanvas.ui.snake
 
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.Direction
-import com.yobuligo.snakeandroidcanvas.ui.element.IMovableElement
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 
 class SnakeMover() : ISnakeMover {

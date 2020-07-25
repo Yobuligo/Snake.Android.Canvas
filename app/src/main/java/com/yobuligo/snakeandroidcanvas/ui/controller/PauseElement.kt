@@ -7,7 +7,6 @@ import android.graphics.Rect
 import com.yobuligo.snakeandroidcanvas.ui.clickable.ClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickObserver
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickable
-import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 
