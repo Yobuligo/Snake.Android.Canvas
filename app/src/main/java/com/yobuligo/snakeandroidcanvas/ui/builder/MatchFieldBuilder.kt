@@ -2,6 +2,7 @@ package com.yobuligo.snakeandroidcanvas.ui.builder
 
 import com.yobuligo.snakeandroidcanvas.builder.IMatchFieldBuilder
 import com.yobuligo.snakeandroidcanvas.options.Config
+import com.yobuligo.snakeandroidcanvas.options.ElementSize
 import com.yobuligo.snakeandroidcanvas.ui.border.Border
 import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
 import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
@@ -23,6 +24,11 @@ internal class MatchFieldBuilder : IMatchFieldBuilder {
 
     override fun setNoBorders(): IMatchFieldBuilder {
         noBorders = true
+        return this
+    }
+
+    override fun setElementSize(elementSize: ElementSize): IMatchFieldBuilder {
+        Config.ELEMENT_SIZE = elementSize.size
         return this
     }
 

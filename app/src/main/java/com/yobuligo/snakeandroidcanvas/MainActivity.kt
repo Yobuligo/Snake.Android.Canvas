@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.yobuligo.snakeandroidcanvas.builder.IScreenBuilder
 import com.yobuligo.snakeandroidcanvas.builder.ScreenBuilder
-import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.ElementSize
 import com.yobuligo.snakeandroidcanvas.options.Speed
 import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
@@ -18,11 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val canvasView = CanvasView(this)
 
-        Config.ELEMENT_SIZE = ElementSize.NORMAL.size
-
         screenBuilder.createMatchFieldBuilder()
             .setPosLeftTop(Coordinate(50, 50))
             .setPosRightBottom(Coordinate(950, 950))
+            .setElementSize(ElementSize.NORMAL)
             .build()
 
         screenBuilder.createSnakeElementSpawnerBuilder()
