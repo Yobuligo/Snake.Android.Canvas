@@ -1,24 +1,27 @@
-package com.yobuligo.snakeandroidcanvas.builder
+package com.yobuligo.snakeandroidcanvas.ui.builder
 
+import com.yobuligo.snakeandroidcanvas.builder.IMatchFieldBuilder
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.ui.border.Border
+import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
 
-class FrameBuilder : IFrameBuilder {
+internal class MatchFieldBuilder : IMatchFieldBuilder {
     private var posLeftTop: ICoordinate = Coordinate(0, 0)
     private var posRightBottom: ICoordinate = Coordinate(800, 800)
     private var noBorders: Boolean = false
 
-    override fun setPosLeftTop(coordinate: ICoordinate): IFrameBuilder {
+    override fun setPosLeftTop(coordinate: ICoordinate): IMatchFieldBuilder {
         posLeftTop = coordinate
         return this
     }
 
-    override fun setPosRightBottom(coordinate: ICoordinate): IFrameBuilder {
+    override fun setPosRightBottom(coordinate: ICoordinate): IMatchFieldBuilder {
         posRightBottom = coordinate
         return this
     }
 
-    override fun setNoBorders(): IFrameBuilder {
+    override fun setNoBorders(): IMatchFieldBuilder {
         noBorders = true
         return this
     }

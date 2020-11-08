@@ -6,8 +6,10 @@ import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
 
 class SnakeMover() : ISnakeMover {
     private var lastMoveInMilli: Long = 0.toLong()
+    private lateinit var snake: ISnake
 
     override fun move(snake: ISnake, cycleAttributes: ICycleAttributes) {
+        this.snake = snake
         if (!snake.movable) {
             return
         }
@@ -18,7 +20,7 @@ class SnakeMover() : ISnakeMover {
 
         var element = snake.getLastSnakeElement()
         while (true) {
-            if ((element != null) && (element.predecessor != null)) {
+            if (element.predecessor != null) {
                 element.pos.x = element.predecessor!!.pos.x
                 element.pos.y = element.predecessor!!.pos.y
                 element.direction = element.predecessor!!.direction
@@ -45,9 +47,9 @@ class SnakeMover() : ISnakeMover {
             return true
         }
 
-        //TODO: Consider Speed here
+        //Todo: Consider Speed here
         val timeSpan: Long = cycleAttributes.currentTimeinMilli - lastMoveInMilli
-        if (timeSpan > Config.SPEED.value) {
+        if (timeSpan > snake.speed.value) {
             return true
         }
 

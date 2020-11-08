@@ -1,9 +1,11 @@
-package com.yobuligo.snakeandroidcanvas.builder
+package com.yobuligo.snakeandroidcanvas.ui.builder
 
+import com.yobuligo.snakeandroidcanvas.builder.ISnakeElementSpawnerBuilder
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeElementSpawner
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeElementSpawner
+import com.yobuligo.snakeandroidcanvas.ui.updater.UpdaterRepository
 
-class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
+internal class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
     private var autoSpawnCycleInMilli: Long = 0.toLong()
     private var isMultiColor: Boolean = false
     private var spawnNumberElements: Int = 0
@@ -30,12 +32,15 @@ class SnakeElementSpawnerBuilder : ISnakeElementSpawnerBuilder {
     }
 
     override fun build(): ISnakeElementSpawner {
-        val snakeElementSpawner = SnakeElementSpawner(autoSpawnCycleInMilli, isMultiColor, deactivateAutoSpawn)
+        val snakeElementSpawner =
+            SnakeElementSpawner(autoSpawnCycleInMilli, isMultiColor, deactivateAutoSpawn)
         if (spawnNumberElements > 0) {
             for (i in 1..spawnNumberElements) {
                 snakeElementSpawner.spawnElement()
             }
         }
+
+        UpdaterRepository.instance.addUpdater(snakeElementSpawner)
         return snakeElementSpawner
     }
 }

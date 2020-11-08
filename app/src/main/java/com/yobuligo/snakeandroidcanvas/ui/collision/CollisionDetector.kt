@@ -1,6 +1,6 @@
 package com.yobuligo.snakeandroidcanvas.ui.collision
 
-import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
 import com.yobuligo.snakeandroidcanvas.ui.element.ElementRepository
 import com.yobuligo.snakeandroidcanvas.ui.element.IElement
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake

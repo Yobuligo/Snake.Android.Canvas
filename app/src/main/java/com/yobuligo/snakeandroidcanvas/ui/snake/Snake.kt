@@ -35,7 +35,7 @@ class Snake : Element(), ISnake {
                 return lastElement!!
             }
 
-            lastElement = lastElement?.follower
+            lastElement = lastElement.follower
         }
     }
 
@@ -67,7 +67,7 @@ class Snake : Element(), ISnake {
     ) {
         follower.direction = predecessor.direction
         follower.predecessor = predecessor
-        predecessor?.follower = follower
+        predecessor.follower = follower
     }
 
     private fun putCoordinatesRelationship(

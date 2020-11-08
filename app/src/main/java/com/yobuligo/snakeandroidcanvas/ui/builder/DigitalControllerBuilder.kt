@@ -1,10 +1,13 @@
-package com.yobuligo.snakeandroidcanvas.builder
+package com.yobuligo.snakeandroidcanvas.ui.builder
 
+import com.yobuligo.snakeandroidcanvas.builder.IDigitalControllerBuilder
 import com.yobuligo.snakeandroidcanvas.ui.controller.DigitalController
 import com.yobuligo.snakeandroidcanvas.ui.controller.IDigitalController
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
+import com.yobuligo.snakeandroidcanvas.ui.renderer.RendererRepository
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnakeController
 
-class DigitalControllerBuilder : IDigitalControllerBuilder {
+internal class DigitalControllerBuilder : IDigitalControllerBuilder {
     private lateinit var position: ICoordinate
     private var positionChanged: Boolean = false
     private var displayPauseButton: Boolean = false
@@ -25,6 +28,8 @@ class DigitalControllerBuilder : IDigitalControllerBuilder {
             return DigitalController(snakeController, position, displayPauseButton)
         }
 
-        return DigitalController(snakeController, displayPauseButton)
+        val digitalController = DigitalController(snakeController, displayPauseButton)
+        RendererRepository.instance.addRenderer(digitalController)
+        return digitalController
     }
 }

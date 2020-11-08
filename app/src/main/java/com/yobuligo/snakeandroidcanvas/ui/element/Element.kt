@@ -1,10 +1,10 @@
 package com.yobuligo.snakeandroidcanvas.ui.element
 
-import com.yobuligo.snakeandroidcanvas.builder.Coordinate
-import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
 import com.yobuligo.snakeandroidcanvas.options.Config
+import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
 
-abstract open class Element : IElement {
+abstract class Element : IElement {
     private val elementDestroyListenerList: MutableList<IElementDestroyListener> =
         mutableListOf<IElementDestroyListener>()
     override var pos: ICoordinate = Coordinate(0, 0)

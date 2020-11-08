@@ -1,7 +1,12 @@
-package com.yobuligo.snakeandroidcanvas.builder
+package com.yobuligo.snakeandroidcanvas.ui.builder
 
+import com.yobuligo.snakeandroidcanvas.builder.ISnakeBuilder
 import com.yobuligo.snakeandroidcanvas.options.Direction
 import com.yobuligo.snakeandroidcanvas.options.Speed
+import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
+import com.yobuligo.snakeandroidcanvas.ui.renderer.RendererRepository
+import com.yobuligo.snakeandroidcanvas.ui.renderer.SnakeRenderer
 import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
 import com.yobuligo.snakeandroidcanvas.ui.snake.Snake
 
@@ -46,6 +51,8 @@ internal class SnakeBuilder : ISnakeBuilder {
         for (number in 1..startNumberElements) {
             snake.createAndAppendInitialSnakeElement()
         }
+
+        RendererRepository.instance.addRenderer(SnakeRenderer(snake))
         return snake
     }
 }

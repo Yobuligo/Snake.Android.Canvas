@@ -1,6 +1,6 @@
 package com.yobuligo.snakeandroidcanvas.ui.element
 
-import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
 
 class ElementRepository private constructor() : IElementRepository {
     companion object {

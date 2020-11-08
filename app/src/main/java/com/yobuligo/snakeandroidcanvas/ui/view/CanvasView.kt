@@ -20,8 +20,8 @@ import java.util.*
 class CanvasView(context: Context) : View(context),
     IRendererRepository, IUpdaterRepository {
     private val clickableRepository: IClickableRepository = ClickableRepository.getInstance()
-    private val rendererRepository: IRendererRepository = RendererRepository()
-    private val updaterRepository: IUpdaterRepository = UpdaterRepository()
+    private val rendererRepository: IRendererRepository = RendererRepository.instance
+    private val updaterRepository: IUpdaterRepository = UpdaterRepository.instance
     private val collisionDetector: ICollisionDetector = CollisionDetector()
     private var lastTimeInMilli: Long = 0.toLong()
     private var currentTimeInMilli: Long = 0.toLong()
@@ -59,11 +59,6 @@ class CanvasView(context: Context) : View(context),
 
     override fun addRenderer(renderer: IRenderer) {
         rendererRepository.addRenderer(renderer)
-
-        if (renderer is IUpdater) {
-            val updater: IUpdater = renderer
-            addUpdater(updater)
-        }
     }
 
     override fun getRenderer(): List<IRenderer> {

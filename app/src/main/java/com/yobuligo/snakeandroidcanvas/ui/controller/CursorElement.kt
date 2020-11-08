@@ -8,8 +8,8 @@ import com.yobuligo.snakeandroidcanvas.ui.clickable.ClickableRepository
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickObserver
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickable
 import com.yobuligo.snakeandroidcanvas.ui.clickable.IClickableRepository
-import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 import com.yobuligo.snakeandroidcanvas.ui.renderer.ICycleAttributes
+import com.yobuligo.snakeandroidcanvas.ui.renderer.IRenderer
 
 class CursorElement(override var x: Int, override var y: Int, val clickobserver: IClickObserver) :
     IRenderer, IClickable {

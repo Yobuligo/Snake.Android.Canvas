@@ -1,9 +1,9 @@
 package com.yobuligo.snakeandroidcanvas.ui.playfield
 
-import com.yobuligo.snakeandroidcanvas.builder.Coordinate
-import com.yobuligo.snakeandroidcanvas.builder.ICoordinate
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.ui.collision.CollisionDetector
+import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
+import com.yobuligo.snakeandroidcanvas.ui.core.ICoordinate
 import kotlin.random.Random
 
 class PlayfieldAdministrator : IPlayfieldAdministrator {

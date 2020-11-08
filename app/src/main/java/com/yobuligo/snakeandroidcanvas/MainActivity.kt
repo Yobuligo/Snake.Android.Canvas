@@ -2,57 +2,48 @@ package com.yobuligo.snakeandroidcanvas
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.yobuligo.snakeandroidcanvas.builder.*
+import com.yobuligo.snakeandroidcanvas.builder.IScreenBuilder
+import com.yobuligo.snakeandroidcanvas.builder.ScreenBuilder
 import com.yobuligo.snakeandroidcanvas.options.Config
 import com.yobuligo.snakeandroidcanvas.options.ElementSize
 import com.yobuligo.snakeandroidcanvas.options.Speed
-import com.yobuligo.snakeandroidcanvas.ui.renderer.ElementRenderer
-import com.yobuligo.snakeandroidcanvas.ui.snake.ISnake
+import com.yobuligo.snakeandroidcanvas.ui.core.Coordinate
 import com.yobuligo.snakeandroidcanvas.ui.snake.SnakeController
 import com.yobuligo.snakeandroidcanvas.ui.view.CanvasView
 
 class MainActivity : AppCompatActivity() {
+    private val screenBuilder: IScreenBuilder by lazy { ScreenBuilder() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val canvasView = CanvasView(this)
 
         Config.ELEMENT_SIZE = ElementSize.NORMAL.size
-        Config.SPEED = Speed.SUPERFAST
 
-        val snake: ISnake = buildSnake()
-        canvasView.addRenderer(ElementRenderer(snake))
-
-        FrameBuilder()
+        screenBuilder.createMatchFieldBuilder()
             .setPosLeftTop(Coordinate(50, 50))
             .setPosRightBottom(Coordinate(950, 950))
             .build()
 
-        canvasView.addUpdater(
-            SnakeElementSpawnerBuilder()
-                .setActiveMultiColor()
-                .setAutoSpawnCycleInMilli(0)
-                .setSpawnNumberElementsAtBegin(10)
-                .setDeactivateAutoSpawn()
-                .build()
-        )
+        screenBuilder.createSnakeElementSpawnerBuilder()
+            .setActiveMultiColor()
+            .setAutoSpawnCycleInMilli(1000)
+            .setSpawnNumberElementsAtBegin(10)
+            .setDeactivateAutoSpawn()
+            .build()
 
-        canvasView.addRenderer(
-            DigitalControllerBuilder()
-                .setDisplayPauseButton()
-                .build(SnakeController(snake))
-        )
-
-        setContentView(canvasView)
-    }
-
-    private fun buildSnake(): ISnake {
-        return SnakeBuilder()
+        val snake = screenBuilder.createSnakeBuilder()
             //snakeBuilder.startDirection = Direction.LEFT
             .setStartPos(Coordinate(500, 500))
             .setStartNumberElements(8)
             .setMovable(true)
-            .setSpeed(Speed.SUPERFAST)
+            .setSpeed(Speed.SLOW)
             .build()
+
+        screenBuilder.createDigitalControllerBuilder()
+            .setDisplayPauseButton()
+            .build(SnakeController(snake))
+
+        setContentView(canvasView)
     }
 }
